@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finmobil Deck</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .slider-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: auto 1fr;
+      background-color: #0057ff;
+      gap: 2rem;
+    }
+
+    .slide h1 {
+      grid-column: 1 / -1;
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .numbers {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 2.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 2.5rem;
+      line-height: 1.4;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      padding: 1rem;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    .prev { left: 0; }
+    .next { right: 0; }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <button class="nav-btn prev">&#10094;</button>
+    <button class="nav-btn next">&#10095;</button>
+
+    <div class="slides" id="slides">
+      <section class="slide">
+        <h1>Contents</h1>
+        <div class="numbers">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+        </div>
+        <div class="content">
+          <div>Overview</div>
+          <div>Problema</div>
+          <div>Solución</div>
+          <div>Modelo</div>
+          <div>Equipo</div>
+          <div>Roadmap</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>1. Overview</h1>
+        <div class="numbers">01</div>
+        <div class="content">
+          <div>Finmobil es una plataforma de finanzas móviles para economías emergentes.</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>2. Problema</h1>
+        <div class="numbers">02</div>
+        <div class="content">
+          <div>Invierte con la solidez de la libranza y obtén Desde 1.8% mensual. Operación en Panamá y Colombia con auditoría externa por Deloitte y más de 20 años de experiencia en mercados de deuda..</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>3. Solución</h1>
+        <div class="numbers">03</div>
+        <div class="content">
+          <div>App móvil con acceso instantáneo a pagos, microcréditos y remesas en un solo lugar.</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>4. Modelo</h1>
+        <div class="numbers">04</div>
+        <div class="content">
+          <div>Ingresos por comisiones, asociaciones con comercios y servicios financieros integrados.</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>5. Equipo</h1>
+        <div class="numbers">05</div>
+        <div class="content">
+          <div>Fundadores con experiencia en fintech, mobile y expansión en LATAM.</div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <h1>6. Roadmap</h1>
+        <div class="numbers">06</div>
+        <div class="content">
+          <div>Beta en Q2 2025. Escalamiento regional 2026. Tokenización de servicios en 2027.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script>
+    const slides = document.getElementById('slides');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    const totalSlides = slides.children.length;
+    let current = 0;
+  
+    const updateSlide = () => {
+      slides.style.transform = `translateX(-${current * 100}vw)`;
+    };
+  
+    // Botones
+    next.addEventListener('click', () => {
+      if (current < totalSlides - 1) {
+        current++;
+        updateSlide();
+      }
+    });
+  
+    prev.addEventListener('click', () => {
+      if (current > 0) {
+        current--;
+        updateSlide();
+      }
+    });
+  
+    // Flechas del teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && current < totalSlides - 1) {
+        current++;
+        updateSlide();
+      } else if (e.key === 'ArrowLeft' && current > 0) {
+        current--;
+        updateSlide();
+      }
+    });
+  
+    // Swipe touch para móvil/tablet
+    let startX = 0;
+    slides.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+  
+    slides.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+  
+      if (diff > 50 && current < totalSlides - 1) {
+        current++;
+        updateSlide();
+      } else if (diff < -50 && current > 0) {
+        current--;
+        updateSlide();
+      }
+    });
+  
+    // Scroll horizontal con touchpad
+    slides.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        if (e.deltaX > 0 && current < totalSlides - 1) {
+          current++;
+          updateSlide();
+        } else if (e.deltaX < 0 && current > 0) {
+          current--;
+          updateSlide();
+        }
+      }
+    }, { passive: false });
+  </script>
+</body>
+</html>
