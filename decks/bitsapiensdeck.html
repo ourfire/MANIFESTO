@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finmobil Deck</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
+    }
+
+    .slider-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-fixed {
+    position: fixed;
+    bottom: 1rem;
+    left: 1.5rem;
+    font-size: 1rem;
+    opacity: 0.6;
+    font-family: monospace;
+    z-index: 30;
+    }
+
+    .brand-fixed a {
+    color: inherit;
+    text-decoration: none;
+    }
+
+    .brand-fixed a:hover {
+    opacity: 1;
+    }
+
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      padding: 4rem 3rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      background-color: #0057ff;
+    }
+
+    .number {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      opacity: 0.6;
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      gap: 4rem;
+    }
+
+    .text {
+      flex: 1;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .visual img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      display: none;
+    }
+
+    .icon-support {
+      width: 80px;
+      height: 80px;
+      fill: white;
+      opacity: 0.9;
+      display: none;
+    }
+
+    .visual[data-type="icon"] .icon-support {
+      display: block;
+    }
+
+    .visual[data-type="img"] .image-rich {
+      display: block;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      background: rgba(0, 0, 0, 0.0);
+      color: white;
+      padding: 1rem;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .go-home {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.0);
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 4px;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.0);
+      border: none;
+      color: inherit;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Tema claro automático */
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+
+      .slide {
+        background-color: #e7f0ff;
+      }
+
+      .icon-support {
+        fill: #0057ff;
+        opacity: 0.8;
+      }
+
+      .nav-btn,
+      .go-home,
+      .theme-toggle {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000;
+      }
+
+      .go-home:hover,
+      .theme-toggle:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    /* Tema claro manual (forzado por botón) */
+    .light-mode body {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .light-mode .slide {
+      background-color: #e7f0ff;
+    }
+
+    .light-mode .icon-support {
+      fill: #0057ff;
+      opacity: 0.8;
+    }
+
+    .light-mode .nav-btn,
+    .light-mode .go-home,
+    .light-mode .theme-toggle {
+      background: rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
+
+    .light-mode .go-home:hover,
+    .light-mode .theme-toggle:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <button class="nav-btn prev">&#10094;</button>
+    <button class="nav-btn next">&#10095;</button>
+    <button class="go-home">↺</button>
+    <button id="toggle-theme" class="theme-toggle">🌓</button>
+    <div class="brand-fixed">
+        <a href="https://bitsapiens.network" target="_blank">||||||||||</a>
+      </div>
+      
+
+    <div class="slides" id="slides">
+
+      <!-- Slide con imagen -->
+      <section class="slide">
+        <div class="number">01</div>
+        <div class="content-wrapper">
+          <div class="text">
+            <h2 class="title">Strategic Imagination Officer</h2>
+            <p class="content">Diseño futuros que conectan visión, cultura y tecnología.Presentación de servicios para organizaciones con impacto positivo.
+
+
+            </p>
+          </div>
+          <div class="visual" data-type="img">
+            <img class="image-rich" src="images/logo.svg" alt="Finmobil">
+          </div>
+        </div>
+      </section>
+      <section class="slide">
+        <div class="number">02</div>
+        <div class="content-wrapper">
+          <div class="text">
+            <h2 class="title">FINMOBIL</h2>
+            <p class="content">Finmobil es una plataforma para personas no bancarizadas que permite enviar dinero, ahorrar e invertir desde el móvil.</p>
+          </div>
+          <div class="visual" data-type="img">
+            <img class="image-rich" src="images/logo.svg" alt="Finmobil">
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide con ícono SVG -->
+      <section class="slide">
+        <div class="number">03</div>
+        <div class="content-wrapper">
+          <div class="text">
+            <h2 class="title">Ícono de apoyo</h2>
+            <p class="content">Este slide usa un ícono inline SVG como apoyo visual rápido.</p>
+          </div>
+          <div class="visual" data-type="icon">
+            <svg class="icon-support" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="9" cy="10" r="1"/>
+              <circle cx="15" cy="10" r="1"/>
+              <path d="M8 15c1.5 2 6.5 2 8 0"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    const homeBtn = document.querySelector('.go-home');
+    const themeBtn = document.getElementById('toggle-theme');
+    let current = 0;
+
+    const updateSlide = () => {
+      slides.style.transform = `translateX(-${current * 100}vw)`;
+    };
+
+    next.addEventListener('click', () => {
+      if (current < slides.children.length - 1) current++;
+      updateSlide();
+    });
+
+    prev.addEventListener('click', () => {
+      if (current > 0) current--;
+      updateSlide();
+    });
+
+    homeBtn.addEventListener('click', () => {
+      current = 0;
+      updateSlide();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' && current < slides.children.length - 1) current++;
+      else if (e.key === 'ArrowLeft' && current > 0) current--;
+      updateSlide();
+    });
+
+    let startX = 0;
+    slides.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    slides.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (diff > 50 && current < slides.children.length - 1) current++;
+      else if (diff < -50 && current > 0) current--;
+      updateSlide();
+    });
+
+    slides.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        if (e.deltaX > 0 && current < slides.children.length - 1) current++;
+        else if (e.deltaX < 0 && current > 0) current--;
+        updateSlide();
+      }
+    }, { passive: false });
+
+    // Tema manual
+    if (localStorage.getItem("theme") === "light") {
+      document.documentElement.classList.add("light-mode");
+    }
+
+    themeBtn.addEventListener("click", () => {
+      const root = document.documentElement;
+      const isLight = root.classList.toggle("light-mode");
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>
