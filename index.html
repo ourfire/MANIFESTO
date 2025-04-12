@@ -59,24 +59,6 @@
       text-align: center;
       padding: 3rem 1rem 1rem;
     }
-
-    .logo img {
-      max-width: 220px;
-      width: 80%;
-      height: auto;
-      margin-bottom: 1.2rem;
-    }
-    header img {
-      height: 50px;
-      width: auto;
-    }
-
-    header .brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
     h1 {
       font-family: 'Anton', sans-serif;
       font-size: 2.2rem;
@@ -181,7 +163,7 @@
     }
 
     .blog-entry {
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.1);
       padding: 1.4rem;
       text-align: left;
       font-size: 1.2rem;
@@ -214,12 +196,51 @@
     .zoom-text:hover {
       transform: scale(1.1);
     }
+    .header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem 3rem;
+  gap: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header-brand img {
+  height: 100px;
+  width: auto;
+}
+
+.header-brand .brand {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .header-brand {
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+
+  .header-brand img {
+    height: 80px;
+  }
+
+  .header-brand .brand {
+    font-size: 2.2rem;
+  }
+}
+
+
   </style>
 </head>
 <body>
+
     <header class="header-brand">
         <img src="images/logo.png" alt="Logo">
-        <div class="brand-name">Lanabanal</div>
+        <div class="brand">Lanabanal</div>
       </header>
   <div class="container">
     <p class="blog-entry">
