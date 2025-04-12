@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="images/logo.svg" type="image/x-icon">
-  <title>Lanabanal</title>
+  <link rel="icon" href="image/FAVICONES.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,11 +16,13 @@
       --gradient-service: linear-gradient(180deg, #162c8379, #0e2c435d, #9d4b7c42);
       --gradient-button: linear-gradient(45deg, #307300, #5aea6d, #307300);
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: "Inter", sans-serif;
       background: var(--primary-color);
@@ -66,23 +67,12 @@
       height: auto;
       margin-bottom: 1.2rem;
     }
-    header img {
-      height: 50px;
-      width: auto;
-    }
-
-    header .brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-align: center;
-    }
 
     h1 {
       font-family: 'Anton', sans-serif;
       font-size: 2.2rem;
       margin: 1rem 0;
       color: var(--text-color);
-      text-align: center;
     }
 
     h4 {
@@ -217,17 +207,23 @@
   </style>
 </head>
 <body>
-    <header class="header-brand">
-        <img src="images/logo.png" alt="Logo">
-        <div class="brand-name">Lanabanal</div>
-      </header>
-  <div class="container">
+  <nav class="main-nav">
+    <a href="index.html">Inicio</a>
+    <a href="blog.html">Blog</a>
+    <a href="inversiones.html">Inversiones</a>
+    <a href="recursos.html">Recursos</a>
+  </nav>
+
+  <header>
+    <div class="logo">
+      <img src="image/logo.svg" alt="Logo">
+    </div>
     <p class="blog-entry">
-        "Compartir mis aventuras financieras y acompañar a otros en las propias es parte de mi propósito de vida, junto con el arte y el activismo. Tengo la certeza de que cada persona tiene, de un modo u otro, un gran tesoro que muchas veces no conoce o reclama. -Bitsapiens-"
-      </p>
-    <h1>\</h1>
-    <h1>/</h1>
-    <h1>\</h1>
+      "Compartir mis aventuras financieras y acompañar a otros en las propias es parte de mi propósito de vida, junto con el arte y el activismo. Tengo la certeza de que cada persona tiene, de un modo u otro, un gran tesoro que muchas veces no conoce o reclama. -Bitsapiens-"
+    </p>
+  </header>
+
+  <div class="container">
     <h1>Apalancadores de tus Resultados financieros</h1>
 
     <div class="services">
