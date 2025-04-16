@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog + Tienda | Bitsapiens Money</title>
+  <link rel="icon" href="images/logo.svg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #000000;
+      --text-color: #ffffff;
+      --accent-color: #ffc73a;
+      --border-color: rgba(255, 255, 255, 0.0);
+      --gradient-service: rgba(0, 0, 0, 0.3);
+      --gradient-button: linear-gradient(45deg, #ffc73a, #ffd468, #ffc73a);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+    font-family: 'currier  ', monospace;
+    background: url('images/amazonia2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
+    font-size: 20px;
+    line-height: 1.6;
+    } 
+    .main-nav {
+      display: flex;
+      justify-content: right;
+      margin-right: 3rem;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .main-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    .main-nav a:hover {
+      color: var(--accent-color);
+      font-size: larger;
+    }
+    .container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    .highlight {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    blockquote {
+      font-style: italic;
+      margin: 1rem 0;
+      border-left: 3px solid var(--accent-color);
+      padding-left: 1rem;
+      color: #e0e0e0;
+    }
+    .cta {
+      font-weight: bold;
+      text-align: center;
+      background: var(--gradient-service);
+      padding: 1rem;
+    }
+    .separator {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 3rem 0;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem 0;
+    }
+    .service {
+      flex: 1 1 300px;
+      background: var(--gradient-service);
+      padding: 1rem;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      margin-bottom: 1rem;
+    }
+    .contact-buttons a, .shop-link {
+      background: var(--gradient-button);
+      color: #1b1d24;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .hero-entry {
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <a href="index.html">Inicio</a>
+    <a href="inversiones.html">Inversiones</a>
+    <a href="tienda.html">Tienda</a>
+  </nav>
+  <div class="container">
+    <div class="hero-entry">
+      <h1>Tu Primera Inversión: No es en la Bolsa, es en Tu Mente</h1>
+      <p>La mayoría corre a buscar acciones, cripto o bienes raíces, La inversión que nunca falla es la que haces en ti mismo.</p>
+      <p>Una mente bien formada te permite evaluar mejor cualquier inversión futura. Y eso es algo que ni la inflación ni las crisis pueden quitarte.</p>
+      <p>Antes de poner dinero en cualquier cosa, pon atención en tus hábitos, tus creencias y tu educación financiera.</p>
+      <p>Lee libros, escucha podcasts, conversa con gente que ya vive como tú quieres. Esa es la inversión que paga intereses para toda la vida.</p>
+      <blockquote class="cta">“El ROI más alto siempre viene de convertirte en alguien más sabio.”</blockquote>
+    </div>
+
+    <div class="services">
+      <div class="service">
+        <h1>Libro: Piense y Hágase Rico</h1>
+        <p>Una guía mental para desbloquear tu poder interno.</p>
+        <a href="#" class="shop-link" target="_blank">Ver producto</a>
+      </div>
+      <div class="service">
+        <h1>Curso: Entrenamiento Mental Financiero</h1>
+        <p>Ejercicios diarios para fortalecer tu enfoque y claridad.</p>
+        <a href="#" class="shop-link" target="_blank">Ir al curso</a>
+      </div>
+      <div class="service">
+        <h1>Coaching 1:1</h1>
+        <p>Sesiones para reprogramar tu forma de pensar el dinero.</p>
+        <a href="#" class="shop-link" target="_blank">Agendar</a>
+      </div>
+      <div class="service">
+        <h1>Taza "Ideas valen más que oro"</h1>
+        <p>Para recordarlo cada mañana. Merch oficial Bitsapiens.</p>
+        <a href="#" class="shop-link" target="_blank">Comprar</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
