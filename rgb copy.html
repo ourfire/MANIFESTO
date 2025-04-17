@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RGB</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+/* ----------  RESET & BASE  ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:system-ui,-apple-system,"monospace",sans-serif;color:#fff}
+
+/* ----------  BACKGROUND IMAGE  ---------- */
+body{
+  /* tu imagen: sustituye fondo.jpg por la que quieras */
+  background:url("images/RGB.png") center/cover no-repeat fixed;
+  /* overlay mediante multiple‑background */
+  background-image:
+      linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), /* capa oscura */
+      url("images/RGB.png");
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;gap:4vh;padding:4vh 2rem;
+}
+
+/* ----------  HERO  ---------- */
+.dots{position:absolute;top:3vh;left:2.5vw;display:flex;gap:1vw}
+.dot{width:30px;height:30px;border-radius:50%}
+.dot.r{background:#ff0000}.dot.g{background:#00ff00}.dot.b{background:#0000ff}
+
+h1{font-size:clamp(3rem,15vw,8rem);letter-spacing:.1em;font-weight:900;display:flex;gap:2vw}
+h1 span:nth-child(1){color:#fff}
+
+/* ----------  TAGLINE ---------- */
+.tag{font-size:clamp(1rem,3vw,1.8rem);text-align:center;margin-top:1.5rem;
+     letter-spacing:.03em}
+
+/* ----------  FORM ---------- */
+form{width:min(500px,90%);display:flex;flex-direction:column;gap:1.25rem;margin-top:3vh}
+input,select,textarea,button{font:inherit;padding:.65rem;border:none;border-radius:4px}
+label{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
+input,select,textarea{background:#111a;color:#fff}
+button{background:#fff;color:#000;font-weight:600;cursor:pointer;transition:background .2s}
+button:hover{background:#bbb}
+small{opacity:.6;font-size:.8rem;margin-top:-.5rem}
+
+.choices{display:flex;gap:1rem;margin-top:.4rem}
+.choices label{flex-direction:row;align-items:center;gap:.5rem;font-weight:400}
+</style>
+</head>
+
+<body>
+  <!-- círculos RGB -->
+  <div class="dots">
+    <div class="dot r"></div><div class="dot g"></div><div class="dot b"></div>
+  </div>
+
+  <!-- Hero -->
+  <h1>
+    <span>R</span><span>G</span><span>B</span>
+    
+  </h1>
+
+  <p class="tag">16 777 216 unique colours, one NFT each.<br>Help us decide what comes next ↓</p>
+
+  <!-- Wait‑list -->
+  <form action="https://example.com/waitlist" method="POST">
+    
+
+    <label>1 · Blockchain / layer para mintear
+      <select name="chain" required>
+        <option value="" disabled selected hidden>Choose one</option>
+        <option>Ethereum L1</option><option>Polygon</option>
+        <option>Arbitrum</option><option>Base</option>
+        <option>Other / suggest below</option>
+      </select>
+    </label>
+
+    <label>2 · ¿Visitarías un metaverso 3‑D con coordenadas RGB?
+      <div class="choices">
+        <label><input type="radio" name="metaverse" value="yes" required> Sí</label>
+        <label><input type="radio" name="metaverse" value="maybe"> Tal vez</label>
+        <label><input type="radio" name="metaverse" value="no"> No</label>
+      </div>
+    </label>
+
+    <label>3 · ¿Licenciarías tus paletas a marcas reconocidas?
+      <div class="choices">
+        <label><input type="radio" name="licence" value="yes" required> Claro</label>
+        <label><input type="radio" name="licence" value="neutral"> No sé</label>
+        <label><input type="radio" name="licence" value="no"> Prefiero que no</label>
+      </div>
+    </label>
+
+    <label>Otras ideas de utilidad
+      <textarea name="suggestion" rows="3" placeholder="My killer idea is…"></textarea>
+    </label>
+
+    <button type="submit">Join The Waitlist</button>
+    <label>Email <input type="email" name="email" required placeholder="you@example.xyz"></label>
+    <small>Solo te enviaremos la confirmación y updates clave.</small>
+  </form>
+</body>
+</html>

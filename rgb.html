@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RGB — 16 777 216 Colours, 1 NFT Each</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+/* ---------- RESET ---------- */
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff}
+
+/* ---------- GLOBAL BACKGROUND ---------- */
+body{
+  background:url("images/RGB.png") center/cover no-repeat fixed;
+  background-image:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),url("images/RGB.png");
+}
+
+/* ---------- FIXED NAV ---------- */
+nav{position:fixed;top:1.2rem;right:2rem;z-index:50}
+nav a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:600;font-size:.95rem;opacity:.7}
+nav a:hover,nav a:focus{opacity:1;text-decoration:underline}
+
+/* ---------- LAYOUT UTIL ---------- */
+section{padding:10vh 6vw;max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:2.5rem}
+.center{text-align:center}
+
+/* ---------- GLASS PANEL ---------- */
+.glass{
+  background:rgba(17,17,17,.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;
+  padding:2rem;
+}
+
+/* ---------- HERO ---------- */
+#hero{padding-top:15vh}
+.dots{position:absolute;top:2.5vh;left:2.5vw;display:flex;gap:1vw}
+.dot{width:30px;height:30px;border-radius:50%}
+.dot.r{background:#ff0000}.dot.g{background:#00ff00}.dot.b{background:#0000ff}
+
+h1{font-size:clamp(3rem,15vw,8rem);letter-spacing:.1em;font-weight:900;display:flex;gap:2vw;justify-content:center}
+.tagline{font-size:clamp(.9rem,2.8vw,1.4rem);margin-top:1rem;font-weight:500;opacity:.85}
+
+/* ---------- WAITLIST FORM ---------- */
+form{display:flex;flex-direction:column;gap:1.25rem;width:min(500px,90%);margin:auto}
+label{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
+input,select,textarea,button{font:inherit;padding:.65rem;border:none;border-radius:4px}
+input,select,textarea{background:#111a;color:#fff}
+button{background:#fff;color:#000;font-weight:600;cursor:pointer;transition:background .2s}
+button:hover{background:#bbb}
+small{opacity:.65;font-size:.8rem;padding-top:.3rem}
+.choices{display:flex;gap:1rem;margin-top:.4rem}
+.choices label{flex-direction:row;align-items:center;gap:.4rem;font-weight:400}
+
+/* ---------- SECTION HEADERS ---------- */
+h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.04em}
+h3{font-size:1.2rem;font-weight:700;margin-top:.6rem}
+
+/* ---------- GRID FOR MARKETS & TEAM ---------- */
+.grid{display:grid;gap:1.4rem}
+.grid.markets{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.grid.team{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1rem}
+
+/* ---------- FOOTER ---------- */
+footer{font-size:.8rem;opacity:.6;text-align:center;padding:3rem 1rem}
+</style>
+</head>
+
+<body>
+<!-- ====== NAV ====================================================== -->
+<nav>
+  <a href="#hero">Home</a>
+  <a href="#story">RGB Tech</a>
+  <a href="#tokenomics">Tokenomics</a>
+  <a href="#dao">DAO & Team</a>
+  <a href="#markets">RGB Markets</a>
+  <a href="#press">Press & Memes</a>
+  <a href="#waitlist">Wait‑list</a>
+</nav>
+
+<!-- ====== HERO ===================================================== -->
+<section id="hero" class="center">
+  <div class="dots"><div class="dot r"></div><div class="dot g"></div><div class="dot b"></div></div>
+
+  <h1><span>R</span><span>G</span><span>B</span></h1>
+  <p class="tagline">16 777 216 colours • one NFT each • 256 × 256 × 256 voxel universe</p>
+</section>
+
+<!-- ====== RGB STORY ================================================= -->
+<section id="story">
+  <h2>The RGB System</h2>
+  <p>The Red‑Green‑Blue colour model encodes every hue your screen can display as three integers: <code>R, G, B ∈ 0‑255</code>. That’s <strong>256<sup>3</sup> = 16 777 216</strong> unique combinations.</p>
+  <p>We’re turning that spectrum into a <em>256 × 256 × 256 voxel multiverse</em>. Owning a colour means owning a coordinate—your voxel in the RGB space. Collaborators and brands will interact with this space for art drops, virtual fashion and data visualisations.</p>
+</section>
+
+<!-- ====== TOKENOMICS & RAFFLE ====================================== -->
+<section id="tokenomics">
+  <h2>Tokenomics</h2>
+  <div class="glass">
+    <h3>Price</h3>
+    <p><strong>0.0001 ETH</strong> per colour (gas not included).</p>
+
+    <h3>Grayscale Raffle</h3>
+    <p>There are only 256 colours where <code>R = G = B</code> (pure grayscale). Those will be <strong>raffled</strong> among wait‑list members before the public sale.</p>
+
+    <h3>Supply & Distribution</h3>
+    <ul>
+      <li>Core team multisig treasury · 1 %</li>
+      <li>Community incentives & grants · 4 %</li>
+      <li>Public sale · 95 %</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== TEAM / DAO =============================================== -->
+<section id="dao">
+  <h2>Founding Team + DAO</h2>
+  <p class="center">Four initiators steward the launch, after which every colour holder forms the RGB DAO treasury.</p>
+
+  <div class="grid team">
+    <div class="card"><h3>Alea V.</h3><p>World‑building lead, speculative designer.</p></div>
+    <div class="card"><h3>Liam Q.</h3><p>Smart‑contract dev & on‑chain architect.</p></div>
+    <div class="card"><h3>Sara T.</h3><p>Community & partnerships, ex‑digital fashion house.</p></div>
+    <div class="card"><h3>Jon M.</h3><p>Generative‑art coder, voxel engine wrangler.</p></div>
+  </div>
+
+  <p class="center">Want in? Colour holders can propose and join new working groups—lore, metaverse, brand collabs, treasury strategy and more.</p>
+</section>
+
+<!-- ====== 20 RGB MARKETS =========================================== -->
+<section id="markets">
+  <h2>20 Markets Enabled by RGB Coordinates</h2>
+  <div class="grid markets">
+    <div class="card">#1 · Voxel land leasing inside the RGB universe</div>
+    <div class="card">#2 · Generative art drops keyed to owner palettes</div>
+    <div class="card">#3 · Dynamic brand colour licensing (fashion, UI)</div>
+    <div class="card">#4 · RGB‑based ENS sub‑domains (<code>r‑g‑b.eth</code>)</div>
+    <div class="card">#5 · Data‑viz dashboards renting colour ranges</div>
+    <div class="card">#6 · “Mood lighting” NFTs controlling IRL LED walls</div>
+    <div class="card">#7 · Gamified PFP backgrounds tied to voxel location</div>
+    <div class="card">#8 · Merchandise royalties per palette (tees, sneakers)</div>
+    <div class="card">#9 · On‑chain advertising slots inside voxel space</div>
+    <div class="card">#10 · Music‑visualiser skins mapped to holder colours</div>
+    <div class="card">#11 · AR lenses tinting real‑world objects</div>
+    <div class="card">#12 · Generative quilt NFTs stitching neighbour voxels</div>
+    <div class="card">#13 · DeFi collateral: pledge colour → borrow stablecoins</div>
+    <div class="card">#14 · RGB casino odds boards (colour = odds bucket)</div>
+    <div class="card">#15 · IPFS storage shards indexed by colour code</div>
+    <div class="card">#16 · AI prompt‑tokens granting palette access</div>
+    <div class="card">#17 · DAO grants: fund art in under‑used hue zones</div>
+    <div class="card">#18 · Loyalty points for colour‑themed IRL events</div>
+    <div class="card">#19 · Subscription API to query owner palettes</div>
+    <div class="card">#20 · Secondary resale of grayscale rares</div>
+  </div>
+</section>
+
+<!-- ====== PRESS & MEMES ============================================ -->
+<section id="press">
+  <h2>Press & Meme Culture</h2>
+  <div class="glass">
+    <p><em>“RGB flips the idea of land: here, colour is real estate.”</em> — Decrypt</p>
+    <p><em>“A chromatic stock‑market for digital fashion.”</em> — Vogue Business</p>
+    <p class="center">Memes incoming: <a href="#" style="color:#0af">submit yours</a> ↗</p>
+  </div>
+</section>
+
+<!-- ====== WAITLIST ================================================= -->
+<section id="waitlist">
+  <h2>Join the Wait‑list</h2>
+  <p class="center">Help us decide the chain, utilities and launch timeline. Early subscribers enter the grayscale raffle.</p>
+
+  <form class="glass" action="https://example.com/waitlist" method="POST">
+    <label>Email
+      <input type="email" name="email" required placeholder="you@example.xyz">
+    </label>
+
+    <label>Preferred blockchain / layer
+      <select name="chain" required>
+        <option value="" disabled selected hidden>Choose one</option>
+        <option>Ethereum L1</option><option>Polygon</option>
+        <option>Arbitrum</option><option>Base</option>
+        <option>Other</option>
+      </select>
+    </label>
+
+    <label>Would you explore a 3‑D metaverse made of RGB voxels?
+      <div class="choices">
+        <label><input type="radio" name="metaverse" value="yes" required> Yes</label>
+        <label><input type="radio" name="metaverse" value="maybe"> Maybe</label>
+        <label><input type="radio" name="metaverse" value="no"> No</label>
+      </div>
+    </label>
+
+    <label>Should palette owners license colours to global brands?
+      <div class="choices">
+        <label><input type="radio" name="licence" value="yes" required> Great</label>
+        <label><input type="radio" name="licence" value="neutral"> Unsure</label>
+        <label><input type="radio" name="licence" value="no"> Prefer not</label>
+      </div>
+    </label>
+
+    <label>Any other utility idea?
+      <textarea name="suggestion" rows="3" placeholder="Pitch your idea…"></textarea>
+    </label>
+
+    <button type="submit">Save my spot</button>
+    <small>You’ll get a confirmation e‑mail and the grayscale raffle ticket.</small>
+  </form>
+</section>
+
+<!-- ====== FOOTER ==================================================== -->
+<footer>© 2025 RGB DAO — built as a speculative design & world‑building experiment.</footer>
+</body>
+</html>
