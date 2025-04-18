@@ -68,8 +68,11 @@ nav a:hover{opacity:1;text-decoration:underline}
   }
 
 /* ---------- HOME DOTS (fixed) ---------- */
-.dots{position:fixed;top:1rem;left:1rem;z-index:60;display:flex;gap:.9vw;text-decoration:none}
-.dot{width:24px;height:24px;border-radius:50%;transition:transform .15s}
+.dots {
+      position:fixed; top:1rem; left:1rem;
+      display:flex; gap:.5rem; z-index:100;
+    }
+.dot{width:30px;height:30px;border-radius:50%;transition:transform .15s}
 .dot.r{background:#ff0000}.dot.g{background:#00ff00}.dot.b{background:#0000ff}
 .dots:hover .dot{transform:scale(1.15)}
 
@@ -257,15 +260,15 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
 <section id="markets">
   <h2>20 RGB‑Native Markets</h2>
   <div class="grid markets">
-    <div class="card">Voxel‑land leasing inside the RGB universe</div><div class="card">Generative art drops keyed to owner palettes</div>
-    <div class="card">Dynamic brand colour licensing (fashion/UI)</div><div class="card">RGB‑based ENS sub‑domains (<code>r‑g‑b.eth</code>)</div>
-    <div class="card">Data‑viz dashboards renting colour ranges</div><div class="card">Mood‑lighting NFTs controlling IRL LED walls</div>
+    <div class="card">Voxelated land leasing inside the RGB universe</div><div class="card">Generative art drops keyed to owner palettes</div>
+    <div class="card">Dynamic brand colour licensing (fashion/UI)</div><div class="card">RGB based ENS sub‑domains (<code>r‑g‑b.eth</code>)</div>
+    <div class="card">Data viz dashboards renting colour ranges</div><div class="card">Mood lighting NFTs controlling IRL LED walls</div>
     <div class="card">Gamified PFP backgrounds tied to voxel location</div><div class="card">Merch royalties per palette (tees, sneakers)</div>
-    <div class="card">On‑chain ad slots inside voxel space</div><div class="card">Music‑visualiser skins mapped to holder colours</div>
-    <div class="card">AR filters tinting real‑world objects</div><div class="card">Generative quilt NFTs stitching neighbour voxels</div>
+    <div class="card">On chain ad slots inside voxel space</div><div class="card">Music‑visualiser skins mapped to holder colours</div>
+    <div class="card">AR filters tinting real world objects</div><div class="card">Generative quilt NFTs stitching neighbour voxels</div>
     <div class="card">DeFi collateral: pledge colour → borrow stablecoin</div><div class="card">RGB casino odds boards (colour = odds bucket)</div>
     <div class="card">IPFS storage shards indexed by colour code</div><div class="card">AI prompt‑tokens granting palette access</div>
-    <div class="card">DAO grants: fund art in under‑used hue zones</div><div class="card">Loyalty points for colour‑themed IRL events</div>
+    <div class="card">DAO grants: fund art in under used hue zones</div><div class="card">Loyalty points for colour‑themed IRL events</div>
     <div class="card">Subscription API to query owner palettes</div><div class="card">Secondary resale of grayscale rares</div>
   </div>
 </section>
@@ -275,7 +278,7 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
   <h2>Press & Memes</h2>
   <div class="glass">
     <p><em>“RGB flips the idea of land: here, colour is real estate.”</em> — Decrypt</p>
-    <p><em>“A chromatic stock‑market for digital fashion.”</em> — Vogue Business</p>
+    <p><em>“A chromatic stock market for digital fashion.”</em> — Vogue Business</p>
     <p class="center">Got memes? <a href="#" style="color:#0af">Submit yours ↗</a></p>
   </div>
 </section>
@@ -284,19 +287,18 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
 <section id="waitlist">
     <h2>Join the Waitlist</h2>
     <p class="center">Early subscribers enter the GRAYSCALE raffle.</p>
-  
     <form class="glass"
-          action="https://formspree.io/f/xblgvajv"
-          method="POST"
-          accept-charset="UTF-8">
-  
-      <!-- honeypot to block bots -->
-      <input type="text" name="_gotcha" style="display:none!important">
-  
-      <!-- Formspree settings -->
-      <input type="hidden" name="_replyto" value="">
-      <input type="hidden" name="_subject" value="New RGB Waitlist Signup">
-      <input type="hidden" name="_next" value="https://propaganda.money/thankyou.html">
+    action="https://formspree.io/f/xblgvajv"
+    method="POST"
+    accept-charset="UTF-8">
+<!-- honeypot -->
+    <input type="text" name="_gotcha" style="display:none!important">
+
+    <!-- Formspree settings -->
+    <input type="hidden" name="_replyto" value="">
+    <input type="hidden" name="_subject" value="New RGB Waitlist Signup">
+    <!-- ↓ Aquí rediriges a tu propia página: -->
+    <input type="hidden" name="_next" value="https://propaganda.money/thankyou.html">
   
       <label>Preferred blockchain
         <select name="chain" required>
@@ -317,7 +319,7 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
         </div>
       </label>
   
-      <label>License palettes to brands?
+      <label>License Your colours to brands?
         <div class="choices">
           <label><input type="radio" name="licence" value="yes" required> Great</label>
           <label><input type="radio" name="licence" value="neutral"> Unsure</label>

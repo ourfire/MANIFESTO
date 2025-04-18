@@ -58,7 +58,7 @@
     .controls input[type=range] {
       margin-top:.5rem; -webkit-appearance:none;
       width:160px; height:8px; border-radius:4px;
-      background:#444; outline:none;
+      background: linear-gradient(90deg,#000000,#ffffff); outline:none;
     }
     .controls input[type=range]::-webkit-slider-thumb {
       -webkit-appearance:none; appearance:none;
@@ -69,7 +69,6 @@
     /* CANVAS */
     #playground {
       width:80%; max-width:600px;
-      border:2px solid rgba(255,255,255,.2);
       image-rendering:pixelated;
       display:block; margin:0 auto;
     }
@@ -100,7 +99,7 @@
 <body>
 
   <!-- Home button (3 dots) -->
-  <a href="index.html" class="dots" aria-label="Home">
+  <a href="rgb.html" class="dots" aria-label="Home">
     <span class="dot r"></span>
     <span class="dot g"></span>
     <span class="dot b"></span>
