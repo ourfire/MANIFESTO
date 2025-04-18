@@ -13,19 +13,12 @@
 
     /* HOME DOTS */
     .dots {
-      position:fixed;
-      top:1rem;
-      left:1rem;
-      display:flex;
-      gap:.5rem;
-      z-index:100;
+      position:fixed; top:1rem; left:1rem;
+      display:flex; gap:.5rem; z-index:100;
     }
     .dot {
-      width:30px;
-      height:30px;
-      border-radius:50%;
-      cursor:pointer;
-      transition:transform .15s;
+      width:30px; height:30px; border-radius:50%;
+      cursor:pointer; transition:transform .15s;
     }
     .dot.r { background:#ff0000 }
     .dot.g { background:#00ff00 }
@@ -34,51 +27,36 @@
 
     /* LAYOUT */
     body {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:4vh 2rem;
-      scroll-behavior:smooth;
+      display:flex; flex-direction:column; align-items:center;
+      padding:4vh 2rem; scroll-behavior:smooth;
     }
     main { width:100%; max-width:900px; }
 
     /* HEADER */
     .hero {
-      text-align:center;
-      margin-bottom:20vh;
+      text-align:center; margin-bottom:20vh;
     }
     .hero h1 {
       font-size:clamp(2.5rem,8vw,5rem);
-      font-weight:900;
-      letter-spacing:.1em;
+      font-weight:900; letter-spacing:.1em;
     }
     .hero p {
       font-size:clamp(1rem,3vw,1.5rem);
-      opacity:.8;
-      margin-top:3rem;
+      opacity:.8; margin-top:2rem;
     }
 
     /* CONTROLS */
     .controls {
-      display:flex;
-      flex-wrap:wrap;
-      gap:1rem;
-      justify-content:center;
-      margin-bottom:1rem;
+      display:flex; flex-wrap:wrap; gap:1rem;
+      justify-content:center; margin-bottom:1rem;
     }
     .controls label {
-      display:flex;
-      flex-direction:column;
-      text-align:center;
-      font-size:.95rem;
+      display:flex; flex-direction:column;
+      text-align:center; font-size:.95rem;
     }
-    .controls output {
-      margin-top:.25rem;
-      font-weight:700;
-    }
+    .controls output { margin-top:.25rem; font-weight:700; }
     .controls input[type=range] {
-      margin-top:.5rem;
-      -webkit-appearance:none;
+      margin-top:.5rem; -webkit-appearance:none;
       width:160px; height:8px; border-radius:4px;
       background:#444; outline:none;
     }
@@ -90,36 +68,28 @@
 
     /* CANVAS */
     #playground {
-      width:100%;
-      max-width:800px;
+      width:80%; max-width:600px;
       border:2px solid rgba(255,255,255,.2);
       image-rendering:pixelated;
-      display:block;
-      margin:0 auto;
+      display:block; margin:0 auto;
     }
 
     /* BUTTONS */
     .btns {
-      display:flex;
-      gap:1rem;
-      justify-content:center;
+      display:flex; gap:1rem; justify-content:center;
       margin-top:1rem;
     }
     button {
-      padding:.6rem 1.2rem;
-      background:#fff; color:#000;
-      border:none; border-radius:4px;
-      cursor:pointer; font-weight:600;
-      transition:background .2s;
+      padding:.6rem 1.2rem; background:#fff; color:#000;
+      border:none; border-radius:4px; cursor:pointer;
+      font-weight:600; transition:background .2s;
     }
     button:hover { background:#ddd }
 
     /* FOOTER */
     footer {
-      font-size:.85rem;
-      opacity:.6;
-      text-align:center;
-      margin-top:6vh;
+      font-size:.85rem; opacity:.6;
+      text-align:center; margin-top:6vh;
     }
 
     @media(max-width:600px){
@@ -139,7 +109,7 @@
   <main>
     <section class="hero">
       <h1>Thank You!</h1>
-      <p>You’re on the waitlist. Try our RGB playground below.</p>
+      <p>You’re on the Waitlist.</p>
     </section>
 
     <section>
@@ -166,7 +136,7 @@
   </main>
   <footer>
     <p><a href="https://bitsapiens.network" target="_blank" class="footer-link">
-     © 2025 RGB DAO — speculative design & Worldbuilding experiment By<span class="zoom-text">||||||||||</span>
+      © 2025 RGB DAO — speculative design & world‑building experiment by <span class="zoom-text">||||||||||</span>
     </a></p>
   </footer>
 
@@ -184,6 +154,7 @@
       g: document.getElementById('gOut'),
       b: document.getElementById('bOut')
     };
+    const labelBtn = document.getElementById('labelBtn');
     let overlayText = '';
 
     function draw() {
@@ -207,22 +178,28 @@
       }
     }
 
-    // handlers
+    // wire up sliders
     Object.values(sliders).forEach(slider => slider.addEventListener('input', draw));
     draw();
 
-    // label button
-    // label button: auto‑set to "(r,g,b)" without prompt
-    document.getElementById('labelBtn').addEventListener('click', () => {
-    const r = +sliders.r.value;
-    const g = +sliders.g.value;
-    const b = +sliders.b.value;
-    overlayText = `(${r},${g},${b})`;
-    draw();
+    // toggle label button
+    labelBtn.addEventListener('click', () => {
+      const r = +sliders.r.value;
+      const g = +sliders.g.value;
+      const b = +sliders.b.value;
+      if (overlayText) {
+        // remove label
+        overlayText = '';
+        labelBtn.textContent = 'Add RGB coordinates';
+      } else {
+        // add label
+        overlayText = `(${r},${g},${b})`;
+        labelBtn.textContent = 'Remove RGB coordinates';
+      }
+      draw();
     });
 
-
-    // download
+    // download logic
     document.getElementById('downloadBtn').addEventListener('click', () => {
       const r = +sliders.r.value;
       const g = +sliders.g.value;
