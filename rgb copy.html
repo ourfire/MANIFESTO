@@ -5,240 +5,213 @@
 <title>RGB</title>
 <link rel="icon" href="images/favicon3.svg" type="image/svg" sizes="32x32">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Content Security Policy: only allow our own origin and Formspree for form submissions -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action https://formspree.io;">
 
 <style>
-/* ---------- RESET ---------- */
-*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
-html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff}
+  /* ---------- RESET ---------- */
+  *{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+  html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff}
 
-/* ---------- GLOBAL BACKGROUND ---------- */
-body{
-  background:url("images/RGB.png") center/cover no-repeat fixed;
-  background-image:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url("images/RGB.png");
-}
+  /* ---------- GLOBAL BACKGROUND ---------- */
+  body{
+    background:url("images/RGB.png") center/cover no-repeat fixed;
+    background-image:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url("images/RGB.png");
+  }
 
-/* ---------- SECTIONS ---------- */
-section{padding:12vh 6vw;max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:2.5rem}
-.center{text-align:center}
+  /* ---------- SECTIONS ---------- */
+  section{padding:12vh 6vw;max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:2.5rem}
+  .center{text-align:center}
 
-/* ---------- STRONGER GLASS EFFECT ---------- */
-.glass{
-  background:rgba(17,17,17,.65);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:14px;
-  padding:2rem;
-}
+  /* ---------- STRONGER GLASS EFFECT ---------- */
+  .glass{
+    background:rgba(17,17,17,.65);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:14px;
+    padding:2rem;
+  }
 
-/* ---------- FIXED NAV ---------- */
-nav{position:fixed;top:1rem;right:2rem;z-index:50}
-nav a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:600;font-size:.95rem;opacity:.8}
-nav a:hover{opacity:1;text-decoration:underline}
+  /* ---------- FIXED NAV ---------- */
+  nav{position:fixed;top:1rem;right:2rem;z-index:50}
+  nav a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:600;font-size:.95rem;opacity:.8}
+  nav a:hover{opacity:1;text-decoration:underline}
 
-/* hamburger on small screens */
-#burger{display:none}
-label[for=burger]{display:none;font-size:1.6rem;color:#fff;cursor:pointer}
-@media(max-width:640px){
-  nav{top:.8rem;right:1rem}
-  nav a{display:none;margin:1rem 0;font-size:1rem}
-  #burger:checked ~ a{display:block}
-  label[for=burger]{display:block}
-}
+  /* ---------- HAMBURGER MENU ---------- */
+  #burger{display:none;}
+  label[for=burger]{display:none;font-size:1.6rem;color:#fff;cursor:pointer;}
+  @media (max-width:640px){
+    label[for=burger]{display:block;}
+    nav a{
+      display:none;
+      margin:0;
+      padding:1rem 0;
+      border-top:1px solid rgba(255,255,255,.1);
+      text-align:right;
+    }
+    #burger:checked ~ a{display:block;}
+  }
 
-/* ---------- HOME DOTS (fixed) ---------- */
-.dots{position:fixed;top:1rem;left:1rem;z-index:60;display:flex;gap:.9vw;text-decoration:none}
-.dot{width:24px;height:24px;border-radius:50%;transition:transform .15s}
-.dot.r{background:#ff0000}.dot.g{background:#00ff00}.dot.b{background:#0000ff}
-.dots:hover .dot{transform:scale(1.15)}
+  /* ---------- HOME DOTS (fixed) ---------- */
+  .dots{position:fixed;top:1rem;left:1rem;z-index:60;display:flex;gap:.9vw;text-decoration:none}
+  .dot{width:24px;height:24px;border-radius:50%;transition:transform .15s}
+  .dot.r{background:#ff0000}.dot.g{background:#00ff00}.dot.b{background:#0000ff}
+  .dots:hover .dot{transform:scale(1.15)}
 
-/* ---------- HERO ---------- */
-#hero{padding-top:15vh}
-h1{
-  font-size:clamp(10rem,22vw,20rem);      /* bigger letters */
-  letter-spacing:.1em;font-weight:900;
-  display:flex;gap:0vw;justify-content:center;
-}
+  /* ---------- HERO ---------- */
+  #hero{padding-top:15vh}
+  h1{
+    font-size:clamp(10rem,22vw,20rem);
+    letter-spacing:.1em;font-weight:900;
+    display:flex;gap:0vw;justify-content:center;
+  }
+  .tagline{
+    font-size:clamp(1.5rem,3vw,3rem);
+    margin-top:1rem;font-weight:500;opacity:.85;
+    padding:1rem;
+  }
 
-/* vertical 0-255 columns (brighter) */
-.tagline{font-size:clamp(1.5rem,3vw,3rem);margin-top:1rem;font-weight:500;opacity:.85
-  padding:1rem;
-}
+  /* ---------- FORM ---------- */
+  form{display:flex;flex-direction:column;gap:1.25rem;width:min(500px,100%);margin:auto}
+  label{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
+  input,select,textarea,button{font:inherit;padding:.65rem;border:none;border-radius:4px}
+  input,select,textarea{background:#111a;color:#fff}
+  button{background:#fff;color:#000;font-weight:600;cursor:pointer;transition:background .2s}
+  button:hover{background:#bbb}
+  small{opacity:.65;font-size:.8rem;padding-top:.3rem}
+  .choices{display:flex;gap:1rem;margin-top:.4rem;flex-wrap:wrap}
+  .choices label{flex-direction:row;align-items:center;gap:.4rem;font-weight:400}
 
-/* ---------- FORM ---------- */
-form{display:flex;flex-direction:column;gap:1.25rem;width:min(500px,100%);margin:auto}
-label{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
-input,select,textarea,button{font:inherit;padding:.65rem;border:none;border-radius:4px}
-input,select,textarea{background:#111a;color:#fff}
-button{background:#fff;color:#000;font-weight:600;cursor:pointer;transition:background .2s}
-button:hover{background:#bbb}
-small{opacity:.65;font-size:.8rem;padding-top:.3rem}
-.choices{display:flex;gap:1rem;margin-top:.4rem;flex-wrap:wrap}
-.choices label{flex-direction:row;align-items:center;gap:.4rem;font-weight:400}
+  /* ---------- HEADERS ---------- */
+  h2{font-size:clamp(2rem,5vw,2.6rem);font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.04em}
+  h3{font-size:1.2rem;font-weight:700;margin-top:.6rem}
 
-/* ---------- HEADERS ---------- */
-h2{font-size:clamp(2rem,5vw,2.6rem);font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.04em}
-h3{font-size:1.2rem;font-weight:700;margin-top:.6rem}
+  /* ---------- GRID STYLES ---------- */
+  .grid{display:grid;gap:1.4rem}
+  .grid.markets{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  .grid.team{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    padding:1rem;
+  }
+  @media(max-width:600px){
+    .grid.markets,.grid.team{grid-template-columns:1fr}
+  }
 
-/* ---------- GRID STYLES ---------- */
-.grid{display:grid;gap:1.4rem}
-.grid.markets{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-.grid.team{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.card{
-  background:rgba(255,255,255,.08);        /* un poco de luz */
-  backdrop-filter:blur(18px);              /* <- blur añadido */
-  -webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;
-  padding:1rem;
-}
-@media(max-width:600px){
-  .grid.markets,.grid.team{grid-template-columns:1fr}
-}
+  /* ---------- FOOTER ---------- */
+  footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
 
-/* ---------- FOOTER ---------- */
-footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
-
-/* ---------- EXTRA SMALL DEVICES ---------- */
-@media(max-width:480px){
-  section{padding:10vh 4vw}
-  .glass{padding:1.4rem}
-}
+  /* ---------- EXTRA SMALL DEVICES ---------- */
+  @media(max-width:480px){
+    section{padding:10vh 4vw}
+    .glass{padding:1.4rem}
+  }
+  @media (max-width: 768px){
+    body{
+      background-attachment:scroll;
+      background-position:center top;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- HOME BUTTON (3 dots) -->
-<a href="#hero" class="dots" aria-label="Home">
-  <span class="dot r"></span><span class="dot g"></span><span class="dot b"></span>
-</a>
+  <!-- HOME BUTTON (3 dots) -->
+  <a href="#hero" class="dots" aria-label="Home">
+    <span class="dot r"></span><span class="dot g"></span><span class="dot b"></span>
+  </a>
 
-<!-- NAV -->
-<nav>
-  <input type="checkbox" id="burger"><label for="burger">☰</label>
-  <a href="#hero">Home</a><a href="#story">RGB Tech</a><a href="#tokenomics">Tokenomics</a>
-  <a href="#dao">DAO & Team</a><a href="#markets">Markets</a>
-  <a href="#press">Press</a><a href="#waitlist">Wait‑list</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <input type="checkbox" id="burger">
+    <label for="burger">☰</label>
+    <a href="#hero">Home</a>
+    <a href="#story">RGB Tech</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#dao">DAO & Team</a>
+    <a href="#markets">Markets</a>
+    <a href="#press">Press</a>
+    <a href="#waitlist">Waitlist</a>
+  </nav>
 
-<!-- HERO -->
-<section id="hero" class="center">
-  <h1>
-    <span>R</span><span>G</span><span>B</span>
-  </h1>
-  <h2 class="tagline">16 777 216 colours, one NFT for each</h2>
-</section>
+  <!-- HERO -->
+  <section id="hero" class="center">
+    <h1><span>R</span><span>G</span><span>B</span></h1>
+    <h2 class="tagline">16 777 216 colours, one NFT for each</h2>
+  </section>
 
-<!-- RGB STORY -->
-<section id="story">
-  <h2>The RGB System</h2>
-  <div class="glass">
-    <h3>The Red‑Green‑Blue colour model encodes every hue on your screen as three integers (<code>0‑255</code>). That’s <strong>256<sup>3</sup> = 16 777 216</strong> unique combinations.</p>
-    <h3>We’re converting that spectrum into a <em>256 × 256 × 256 voxel multiverse</em>. Owning a colour means owning a coordinate—your voxel in RGB space. Brands and creators will interact with this space for art drops, virtual fashion and data visualisations.</p>
-  
-    
-  </div>
-</section>
-<!-- TOKENOMICS -->
-<section id="tokenomics">
-  <h2>Tokenomics</h2>
-  <div class="glass">
-    <h3>Price</h3><p><strong>0.0001 ETH</strong> per colour (gas not included).</p>
-    <h3>Grayscale Raffle</h3><p>Only 256 colours have <code>R = G = B</code>. They’ll be raffled among wait‑listers before the public sale.</p>
-    <h3>Supply & Distribution</h3>
-    <ul>
-      <li>Core‑team multisig treasury · 1 %</li>
-      <li>Community incentives & grants · 4 %</li>
-      <li>Public sale · 95 %</li>
-    </ul>
-  </div>
-</section>
+  <!-- RGB STORY -->
+  <section id="story">
+    <h2>The RGB System</h2>
+    <div class="glass">
+      <h3>256<sup>3</sup> = 16 777 216 colours</h3>
+      <p>The Red‑Green‑Blue model represents every screen hue as three integers (<code>0‑255</code>). Multiply those ranges (<code>256 × 256 × 256</code>) and you get <strong>16 777 216</strong> unique combinations.</p>
+      <h3>A 256 × 256 × 256 voxel universe</h3>
+      <p>We’re turning that spectrum into a cubic world. Owning a colour means owning one voxel—your coordinate in RGB space. Brands and creators will build art drops, virtual fashion and data visualisations anchored to these voxels.</p>
+    </div>
+  </section>
 
-<!-- TEAM / DAO -->
-<section id="dao">
-  <h2>Founding Team + DAO</h2>
-  <p class="center">Four initiators steward the launch. After that, every colour holder governs the RGB DAO treasury.</p>
+  <!-- TOKENOMICS -->
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <div class="glass">
+      <h3>Price</h3><p><strong>0.0001 ETH</strong> per colour (gas not included).</p>
+      <h3>Grayscale Raffle</h3><p>Only 256 colours have <code>R = G = B</code>. They’ll be raffled among wait‑listers before the public sale.</p>
+      <h3>Supply & Distribution</h3>
+      <ul>
+        <li>Core‑team multisig treasury · 1 %</li>
+        <li>Community incentives & grants · 4 %</li>
+        <li>Public sale · 95 %</li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="grid team">
-    <div class="card"><h3>Bitsapiens</h3><p>World‑building lead, speculative designer.</p></div>
-    <div class="card"><h3>Vitalik Rodriguez</h3><p>Smart‑contract dev & on‑chain architect.</p></div>
-    <div class="card"><h3>Patricia Hilton</h3><p>Community & partnerships, ex‑digital fashion house.</p></div>
-    <div class="card"><h3>Beeple</h3><p>Generative‑art coder, voxel engine wrangler.</p></div>
-  </div>
+  <!-- WAITLIST -->
+  <section id="waitlist">
+    <h2>Join the Wait‑list</h2>
+    <p class="center">Early subscribers enter the grayscale raffle.</p>
+    <form class="glass" 
+      action="https://formspree.io/f/xblgvajv" 
+      method="POST" 
+      accept-charset="UTF-8">
+      <!-- honeypot to block bots -->
+       
+      <label style="display:none!important">Leave empty<input type="text" name="_gotcha"></label>
+      <label>Preferred blockchain
+        <select name="chain" required>
+          <option value="" disabled selected hidden>Choose one</option>
+          <option>Ethereum L1</option><option>Polygon</option>
+          <option>Arbitrum</option><option>Base</option><option>Other</option>
+        </select>
+      </label>
+      <label>Would you explore a 3‑D metaverse?
+        <div class="choices">
+          <label><input type="radio" name="metaverse" value="yes" required> Yes</label>
+          <label><input type="radio" name="metaverse" value="maybe"> Maybe</label>
+          <label><input type="radio" name="metaverse" value="no"> No</label>
+        </div>
+      </label>
+      <label>License palettes to brands?
+        <div class="choices">
+          <label><input type="radio" name="licence" value="yes" required> Great</label>
+          <label><input type="radio" name="licence" value="neutral"> Unsure</label>
+          <label><input type="radio" name="licence" value="no"> Prefer not</label>
+        </div>
+      </label>
+      <label>Any other utility?
+        <textarea name="suggestion" rows="3" placeholder="Pitch your idea…"></textarea>
+      </label>
+      <label>Email <input type="email" name="email" required placeholder="you@example.xyz"></label>
+      <button type="submit">Save my spot</button>
+      <small>We’ll email only launch updates and raffle info.</small>
+    </form>
+  </section>
 
-  <p class="center">Want in? Colour holders can spin up new working groups—lore, metaverse, brand collabs, treasury.</p>
-</section>
-
-<!-- 20 MARKETS -->
-<section id="markets">
-  <h2>20 RGB‑Native Markets</h2>
-  <div class="grid markets">
-    <div class="card">Voxel‑land leasing inside the RGB universe</div><div class="card">Generative art drops keyed to owner palettes</div>
-    <div class="card">Dynamic brand colour licensing (fashion/UI)</div><div class="card">RGB‑based ENS sub‑domains (<code>r‑g‑b.eth</code>)</div>
-    <div class="card">Data‑viz dashboards renting colour ranges</div><div class="card">Mood‑lighting NFTs controlling IRL LED walls</div>
-    <div class="card">Gamified PFP backgrounds tied to voxel location</div><div class="card">Merch royalties per palette (tees, sneakers)</div>
-    <div class="card">On‑chain ad slots inside voxel space</div><div class="card">Music‑visualiser skins mapped to holder colours</div>
-    <div class="card">AR filters tinting real‑world objects</div><div class="card">Generative quilt NFTs stitching neighbour voxels</div>
-    <div class="card">DeFi collateral: pledge colour → borrow stablecoin</div><div class="card">RGB casino odds boards (colour = odds bucket)</div>
-    <div class="card">IPFS storage shards indexed by colour code</div><div class="card">AI prompt‑tokens granting palette access</div>
-    <div class="card">DAO grants: fund art in under‑used hue zones</div><div class="card">Loyalty points for colour‑themed IRL events</div>
-    <div class="card">Subscription API to query owner palettes</div><div class="card">Secondary resale of grayscale rares</div>
-  </div>
-</section>
-
-<!-- PRESS -->
-<section id="press">
-  <h2>Press & Memes</h2>
-  <div class="glass">
-    <p><em>“RGB flips the idea of land: here, colour is real estate.”</em> — Decrypt</p>
-    <p><em>“A chromatic stock‑market for digital fashion.”</em> — Vogue Business</p>
-    <p class="center">Got memes? <a href="#" style="color:#0af">Submit yours ↗</a></p>
-  </div>
-</section>
-
-<!-- WAITLIST -->
-<section id="waitlist">
-  <h2>Join the Wait‑list</h2>
-  <p class="center">Early subscribers enter the grayscale raffle.</p>
-
-  <form class="glass" action="https://example.com/waitlist" method="POST">
-    <label>Preferred blockchain
-      <select name="chain" required>
-        <option value="" disabled selected hidden>Choose one</option>
-        <option>Ethereum L1</option><option>Polygon</option>
-        <option>Arbitrum</option><option>Base</option><option>Other</option>
-      </select>
-    </label>
-
-    <label>Would you explore a 3‑D metaverse?
-      <div class="choices">
-        <label><input type="radio" name="metaverse" value="yes" required> Yes</label>
-        <label><input type="radio" name="metaverse" value="maybe"> Maybe</label>
-        <label><input type="radio" name="metaverse" value="no"> No</label>
-      </div>
-    </label>
-
-    <label>License palettes to brands?
-      <div class="choices">
-        <label><input type="radio" name="licence" value="yes" required> Great</label>
-        <label><input type="radio" name="licence" value="neutral"> Unsure</label>
-        <label><input type="radio" name="licence" value="no"> Prefer not</label>
-      </div>
-    </label>
-
-    <label>Any other utility?
-      <textarea name="suggestion" rows="3" placeholder="Pitch your idea…"></textarea>
-    </label>
-
-    <!-- email placeholder placed just before CTA as you specified -->
-    <label>Email <input type="email" name="email" required placeholder="you@example.xyz"></label>
-
-    <button type="submit">Save my spot</button>
-    <small>We’ll email only launch updates and raffle info.</small>
-  </form>
-</section>
-
-<!-- FOOTER -->
-<footer>© 2025 RGB DAO — speculative design & world‑building experiment.</footer>
+  <footer>© 2025 RGB DAO — speculative design & world‑building experiment.</footer>
 </body>
 </html>

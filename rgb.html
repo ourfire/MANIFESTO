@@ -1,10 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>RGB</title>
 <link rel="icon" href="images/favicon3.svg" type="image/svg" sizes="32x32">
+
+<!-- 1· Responsive on mobile -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- 2· CSP: allow our code and forms, plus inline styles safely -->
+<meta http-equiv="Content-Security-Policy"
+    content="
+        default-src 'self';
+        style-src   'self' 'unsafe-inline';
+        form-action https://formspree.io;
+    ">
+</head>
+<body>
+    
 
 <style>
 /* ---------- RESET ---------- */
@@ -37,14 +51,20 @@ nav a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:600;font-si
 nav a:hover{opacity:1;text-decoration:underline}
 
 /* hamburger on small screens */
-#burger{display:none}
-label[for=burger]{display:none;font-size:1.6rem;color:#fff;cursor:pointer}
-@media(max-width:640px){
-  nav{top:.8rem;right:1rem}
-  nav a{display:none;margin:1rem 0;font-size:1rem}
-  #burger:checked ~ a{display:block}
-  label[for=burger]{display:block}
-}
+
+#burger{display:none;}
+  label[for=burger]{display:none;font-size:1.6rem;color:#fff;cursor:pointer;}
+  @media (max-width:640px){
+    label[for=burger]{display:block;}
+    nav a{
+      display:none;
+      margin:0;
+      padding:1rem 0;
+      border-top:1px solid rgba(255,255,255,.1);
+      text-align:right;
+    }
+    #burger:checked ~ a{display:block;}
+  }
 
 /* ---------- HOME DOTS (fixed) ---------- */
 .dots{position:fixed;top:1rem;left:1rem;z-index:60;display:flex;gap:.9vw;text-decoration:none}
@@ -62,11 +82,10 @@ h1{
 
 /* vertical 0-255 columns (brighter) */
 .tagline{font-size:clamp(1.5rem,3vw,3rem);margin-top:1rem;font-weight:500;opacity:.85
-  padding:1rem;
 }
 
 /* ---------- FORM ---------- */
-form{display:flex;flex-direction:column;gap:1.25rem;width:min(500px,100%);margin:auto}
+form{display:flex;flex-direction:column;gap:1.25rem;width:min(600px,100%);margin:auto}
 label{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
 input,select,textarea,button{font:inherit;padding:.65rem;border:none;border-radius:4px}
 input,select,textarea{background:#111a;color:#fff}
@@ -92,6 +111,62 @@ h3{font-size:1.2rem;font-weight:700;margin-top:.6rem}
   border-radius:10px;
   padding:1rem;
 }
+/* Make waitlist text a bit bigger */
+#waitlist {
+  font-size: 1.05rem;
+}
+#waitlist h2 {
+  font-size: clamp(2.5rem, 6vw, 3.2rem);
+}
+#waitlist p.center,
+#waitlist label,
+#waitlist .choices label,
+#waitlist button,
+#waitlist input,
+#waitlist select,
+#waitlist textarea {
+  font-size: 1rem;
+}
+/* ---------- THANK‑YOU OVERLAY ---------- */
+.thank-you {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.thank-you.show {
+  display: flex;
+}
+.thank-you__box {
+  background: #111;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 90%;
+  color: #fff;
+}
+.thank-you__box h3 {
+  margin-bottom: .5rem;
+  font-size: 1.6rem;
+}
+.thank-you__box p {
+  margin-bottom: 1.2rem;
+}
+.thank-you__box button {
+  padding: .6rem 1.2rem;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.thank-you__box button:hover {
+  background: #ddd;
+}
+
 @media(max-width:600px){
   .grid.markets,.grid.team{grid-template-columns:1fr}
 }
@@ -104,6 +179,13 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
   section{padding:10vh 4vw}
   .glass{padding:1.4rem}
 }
+@media (max-width: 768px){
+  body{
+    background-attachment:scroll;   /* mobile: let it scroll normally   */
+    background-position:center top; /* keeps the focal point visible    */
+  }
+}
+
 </style>
 </head>
 <body>
@@ -118,7 +200,7 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
   <input type="checkbox" id="burger"><label for="burger">☰</label>
   <a href="#hero">Home</a><a href="#story">RGB Tech</a><a href="#tokenomics">Tokenomics</a>
   <a href="#dao">DAO & Team</a><a href="#markets">Markets</a>
-  <a href="#press">Press</a><a href="#waitlist">Wait‑list</a>
+  <a href="#press">Press</a><a href="#waitlist">Waitlist</a>
 </nav>
 
 <!-- HERO -->
@@ -128,17 +210,18 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
   </h1>
   <h2 class="tagline">16 777 216 colours, one NFT for each</h2>
 </section>
-
-<!-- RGB STORY -->
+<!-- === RGB STORY (same glass style as Tokenomics) ================== -->
 <section id="story">
-  <h2>The RGB System</h2>
-  <div class="glass">
-    <h3>The Red‑Green‑Blue colour model encodes every hue on your screen as three integers (<code>0‑255</code>). That’s <strong>256<sup>3</sup> = 16 777 216</strong> unique combinations.</p>
-    <h3>We’re converting that spectrum into a <em>256 × 256 × 256 voxel multiverse</em>. Owning a colour means owning a coordinate—your voxel in RGB space. Brands and creators will interact with this space for art drops, virtual fashion and data visualisations.</p>
+    <h2>The RGB System</h2>
   
-    
-  </div>
-</section>
+    <div class="glass">
+      <h3>256<sup>3</sup> = 16 777 216 colours</h3>
+      <p>The Red‑Green‑Blue model represents every screen hue as three integers (<code>0‑255</code>). Multiply those ranges (<code>256 × 256 × 256</code>) and you get <strong>16 777 216</strong> unique combinations.</p>
+  
+      <h3>A 256 × 256 × 256 voxel universe</h3>
+      <p>We’re turning that spectrum into a cubic world. Owning a colour means owning one voxel—your coordinate in RGB space. Brands and creators will build art drops, virtual fashion and data visualisations anchored to these voxels.</p>
+    </div>
+  </section> 
 <!-- TOKENOMICS -->
 <section id="tokenomics">
   <h2>Tokenomics</h2>
@@ -196,49 +279,108 @@ footer{font-size:1rem;opacity:.8;text-align:center;padding:3rem 1rem}
   </div>
 </section>
 
-<!-- WAITLIST -->
+<!-- ====== WAITLIST ================================================ -->
 <section id="waitlist">
-  <h2>Join the Wait‑list</h2>
-  <p class="center">Early subscribers enter the grayscale raffle.</p>
-
-  <form class="glass" action="https://example.com/waitlist" method="POST">
-    <label>Preferred blockchain
-      <select name="chain" required>
-        <option value="" disabled selected hidden>Choose one</option>
-        <option>Ethereum L1</option><option>Polygon</option>
-        <option>Arbitrum</option><option>Base</option><option>Other</option>
-      </select>
-    </label>
-
-    <label>Would you explore a 3‑D metaverse?
-      <div class="choices">
-        <label><input type="radio" name="metaverse" value="yes" required> Yes</label>
-        <label><input type="radio" name="metaverse" value="maybe"> Maybe</label>
-        <label><input type="radio" name="metaverse" value="no"> No</label>
-      </div>
-    </label>
-
-    <label>License palettes to brands?
-      <div class="choices">
-        <label><input type="radio" name="licence" value="yes" required> Great</label>
-        <label><input type="radio" name="licence" value="neutral"> Unsure</label>
-        <label><input type="radio" name="licence" value="no"> Prefer not</label>
-      </div>
-    </label>
-
-    <label>Any other utility?
-      <textarea name="suggestion" rows="3" placeholder="Pitch your idea…"></textarea>
-    </label>
-
-    <!-- email placeholder placed just before CTA as you specified -->
-    <label>Email <input type="email" name="email" required placeholder="you@example.xyz"></label>
-
-    <button type="submit">Save my spot</button>
-    <small>We’ll email only launch updates and raffle info.</small>
-  </form>
-</section>
-
+    <h2>Join the Wait‑list</h2>
+    <p class="center">Early subscribers enter the grayscale raffle.</p>
+  
+    <form class="glass"
+          action="https://formspree.io/f/xblgvajv"
+          method="POST"
+          accept-charset="UTF-8">
+  
+      <!-- honeypot to block bots -->
+      <input type="text" name="_gotcha" style="display:none!important">
+  
+      <!-- Formspree settings -->
+      <input type="hidden" name="_replyto" value="">
+      <input type="hidden" name="_subject" value="New RGB Waitlist Signup">
+      <input type="hidden" name="_next" value="https://banal.love/thankyou.html">
+  
+      <label>Preferred blockchain
+        <select name="chain" required>
+          <option value="" disabled selected hidden>Choose one</option>
+          <option>Ethereum L1</option>
+          <option>Polygon</option>
+          <option>Arbitrum</option>
+          <option>Base</option>
+          <option>Other</option>
+        </select>
+      </label>
+  
+      <label>Would you explore a 3‑D metaverse?
+        <div class="choices">
+          <label><input type="radio" name="metaverse" value="yes" required> Yes</label>
+          <label><input type="radio" name="metaverse" value="maybe"> Maybe</label>
+          <label><input type="radio" name="metaverse" value="no"> No</label>
+        </div>
+      </label>
+  
+      <label>License palettes to brands?
+        <div class="choices">
+          <label><input type="radio" name="licence" value="yes" required> Great</label>
+          <label><input type="radio" name="licence" value="neutral"> Unsure</label>
+          <label><input type="radio" name="licence" value="no"> Prefer not</label>
+        </div>
+      </label>
+  
+      <label>Any other utility?
+        <textarea name="suggestion" rows="3" placeholder="Pitch your idea…"></textarea>
+      </label>
+  
+      <!-- email placeholder just before the CTA -->
+      <label>Email
+        <input type="email" name="email" required placeholder="you@example.xyz">
+      </label>
+  
+      <button type="submit">Save my spot</button>
+      <small>We’ll email only launch updates and raffle info.</small>
+    </form>
+  </section>
+  
 <!-- FOOTER -->
 <footer>© 2025 RGB DAO — speculative design & world‑building experiment.</footer>
+  <!-- THANK‑YOU OVERLAY -->
+  <div id="thank-you" class="thank-you">
+    <div class="thank-you__box">
+      <h3>Thank you!</h3>
+      <p>Your submission was received.</p>
+      <button id="ty-close">Close</button>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const form = document.querySelector('#waitlist form');
+    const overlay = document.getElementById('thank-you');
+    const btnClose = document.getElementById('ty-close');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      // opcional: elimina el honeypot si usas uno
+      // data.delete('_gotcha');
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('Network response was not ok');
+        form.reset();
+        overlay.classList.add('show');
+      } catch (err) {
+        alert('There was a problem submitting the form.');
+        console.error(err);
+      }
+    });
+
+    btnClose.addEventListener('click', () => {
+      overlay.classList.remove('show');
+    });
+  });
+  </script>
+
 </body>
 </html>
