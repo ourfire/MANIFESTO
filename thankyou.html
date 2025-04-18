@@ -8,39 +8,76 @@
   <style>
     /* RESET */
     * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { height:100%; font-family:system-ui, sans-serif; color:#fff; background:#000; }
+    html, body { height:100%; font-family:monospace, sans-serif; color:#fff; background:#000; }
     a { color:inherit; text-decoration:none; }
+
+    /* HOME DOTS */
+    .dots {
+      position:fixed;
+      top:1rem;
+      left:1rem;
+      display:flex;
+      gap:.5rem;
+      z-index:100;
+    }
+    .dot {
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      cursor:pointer;
+      transition:transform .15s;
+    }
+    .dot.r { background:#ff0000 }
+    .dot.g { background:#00ff00 }
+    .dot.b { background:#0000ff }
+    .dots:hover .dot { transform:scale(1.2) }
 
     /* LAYOUT */
     body {
-      display:flex; flex-direction:column; align-items:center;
-      padding:4vh 2rem; scroll-behavior:smooth;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:4vh 2rem;
+      scroll-behavior:smooth;
     }
     main { width:100%; max-width:900px; }
 
     /* HEADER */
     .hero {
-      text-align:center; margin-bottom:4vh;
+      text-align:center;
+      margin-bottom:20vh;
     }
     .hero h1 {
-      font-size:clamp(2.5rem,8vw,5rem); font-weight:900; letter-spacing:.1em;
+      font-size:clamp(2.5rem,8vw,5rem);
+      font-weight:900;
+      letter-spacing:.1em;
     }
     .hero p {
-      font-size:clamp(1rem,3vw,1.5rem); opacity:.8; margin-top:1rem;
+      font-size:clamp(1rem,3vw,1.5rem);
+      opacity:.8;
+      margin-top:3rem;
     }
 
     /* CONTROLS */
     .controls {
-      display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-bottom:1rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      justify-content:center;
+      margin-bottom:1rem;
     }
     .controls label {
-      display:flex; flex-direction:column; text-align:center; font-size:.95rem;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+      font-size:.95rem;
     }
-    .controls input[type=range],
     .controls output {
-      margin-top:.5rem;
+      margin-top:.25rem;
+      font-weight:700;
     }
     .controls input[type=range] {
+      margin-top:.5rem;
       -webkit-appearance:none;
       width:160px; height:8px; border-radius:4px;
       background:#444; outline:none;
@@ -50,120 +87,168 @@
       width:16px; height:16px; border-radius:50%;
       background:#fff; cursor:pointer;
     }
-    .controls output {
-      font-weight:700; margin-top:.25rem;
-    }
 
     /* CANVAS */
     #playground {
-      width:100%; max-width:800px; border:2px solid rgba(255,255,255,.2);
-      image-rendering:pixelated; display:block; margin:0 auto;
+      width:100%;
+      max-width:800px;
+      border:2px solid rgba(255,255,255,.2);
+      image-rendering:pixelated;
+      display:block;
+      margin:0 auto;
     }
 
-    /* DOWNLOAD BUTTON */
-    #downloadBtn {
+    /* BUTTONS */
+    .btns {
+      display:flex;
+      gap:1rem;
+      justify-content:center;
       margin-top:1rem;
+    }
+    button {
       padding:.6rem 1.2rem;
       background:#fff; color:#000;
       border:none; border-radius:4px;
       cursor:pointer; font-weight:600;
       transition:background .2s;
     }
-    #downloadBtn:hover { background:#ddd; }
+    button:hover { background:#ddd }
 
     /* FOOTER */
     footer {
-      font-size:.85rem; opacity:.6; text-align:center; margin-top:6vh;
+      font-size:.85rem;
+      opacity:.6;
+      text-align:center;
+      margin-top:6vh;
     }
 
     @media(max-width:600px){
-      .controls { flex-direction:column; }
+      .controls { flex-direction:column }
     }
   </style>
 </head>
 <body>
+
+  <!-- Home button (3 dots) -->
+  <a href="index.html" class="dots" aria-label="Home">
+    <span class="dot r"></span>
+    <span class="dot g"></span>
+    <span class="dot b"></span>
+  </a>
+
   <main>
     <section class="hero">
       <h1>Thank You!</h1>
-      <p>You’re on the wait‑list. Try our RGB playground below.</p>
+      <p>You’re on the waitlist. Try our RGB playground below.</p>
     </section>
 
     <section>
       <h2 style="text-align:center; margin-bottom:1rem;">RGB Playground</h2>
       <div class="controls">
-        <label>
-          Red: <output id="rOut">128</output>
+        <label>Red: <output id="rOut">128</output>
           <input type="range" id="rSlider" min="0" max="255" value="128">
         </label>
-        <label>
-          Green: <output id="gOut">128</output>
+        <label>Green: <output id="gOut">128</output>
           <input type="range" id="gSlider" min="0" max="255" value="128">
         </label>
-        <label>
-          Blue: <output id="bOut">128</output>
+        <label>Blue: <output id="bOut">128</output>
           <input type="range" id="bSlider" min="0" max="255" value="128">
         </label>
       </div>
 
       <canvas id="playground" width="800" height="800"></canvas>
-      <button id="downloadBtn">Download 2000×2000 PNG</button>
+
+      <div class="btns">
+        <button id="labelBtn">Add RGB coordinates</button>
+        <button id="downloadBtn">Download 2000×2000 PNG</button>
+      </div>
     </section>
   </main>
-
-  <footer>© 2025 RGB DAO — speculative design & world‑building experiment.</footer>
+  <footer>
+    <p><a href="https://bitsapiens.network" target="_blank" class="footer-link">
+     © 2025 RGB DAO — speculative design & Worldbuilding experiment By<span class="zoom-text">||||||||||</span>
+    </a></p>
+  </footer>
 
   <script>
-    (function(){
-      const canvas = document.getElementById('playground');
-      const ctx = canvas.getContext('2d');
-      const sliders = {
-        r: document.getElementById('rSlider'),
-        g: document.getElementById('gSlider'),
-        b: document.getElementById('bSlider')
-      };
-      const outputs = {
-        r: document.getElementById('rOut'),
-        g: document.getElementById('gOut'),
-        b: document.getElementById('bOut')
-      };
-      function draw() {
-        const r = +sliders.r.value;
-        const g = +sliders.g.value;
-        const b = +sliders.b.value;
-        // update displays
-        outputs.r.textContent = r;
-        outputs.g.textContent = g;
-        outputs.b.textContent = b;
-        // fill canvas
-        ctx.fillStyle = `rgb(${r},${g},${b})`;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-      // event listeners
-      Object.values(sliders).forEach(slider =>
-        slider.addEventListener('input', draw)
-      );
-      draw();
+  (function(){
+    const canvas = document.getElementById('playground');
+    const ctx = canvas.getContext('2d');
+    const sliders = {
+      r: document.getElementById('rSlider'),
+      g: document.getElementById('gSlider'),
+      b: document.getElementById('bSlider')
+    };
+    const outputs = {
+      r: document.getElementById('rOut'),
+      g: document.getElementById('gOut'),
+      b: document.getElementById('bOut')
+    };
+    let overlayText = '';
 
-      // download logic
-      document.getElementById('downloadBtn').addEventListener('click', () => {
-        const r = +sliders.r.value;
-        const g = +sliders.g.value;
-        const b = +sliders.b.value;
-        // create offscreen 2000x2000
-        const dc = document.createElement('canvas');
-        dc.width = dc.height = 2000;
-        const dctx = dc.getContext('2d');
-        dctx.fillStyle = `rgb(${r},${g},${b})`;
-        dctx.fillRect(0, 0, dc.width, dc.height);
-        // trigger download
-        dc.toBlob(blob => {
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = `RGB-${r}-${g}-${b}.png`;
-          link.click();
-        });
+    function draw() {
+      const r = +sliders.r.value;
+      const g = +sliders.g.value;
+      const b = +sliders.b.value;
+      // update outputs
+      outputs.r.textContent = r;
+      outputs.g.textContent = g;
+      outputs.b.textContent = b;
+      // clear & fill
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      // draw overlay text if any
+      if (overlayText) {
+        ctx.font = 'bold 48px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.fillText(overlayText, canvas.width/2, canvas.height/2);
+      }
+    }
+
+    // handlers
+    Object.values(sliders).forEach(slider => slider.addEventListener('input', draw));
+    draw();
+
+    // label button
+    // label button: auto‑set to "(r,g,b)" without prompt
+    document.getElementById('labelBtn').addEventListener('click', () => {
+    const r = +sliders.r.value;
+    const g = +sliders.g.value;
+    const b = +sliders.b.value;
+    overlayText = `(${r},${g},${b})`;
+    draw();
+    });
+
+
+    // download
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const r = +sliders.r.value;
+      const g = +sliders.g.value;
+      const b = +sliders.b.value;
+      const dc = document.createElement('canvas');
+      dc.width = dc.height = 2000;
+      const dctx = dc.getContext('2d');
+      // fill
+      dctx.fillStyle = `rgb(${r},${g},${b})`;
+      dctx.fillRect(0,0,dc.width,dc.height);
+      // overlay text if set
+      if (overlayText) {
+        dctx.font = 'bold 120px sans-serif';
+        dctx.textAlign = 'center';
+        dctx.textBaseline = 'middle';
+        dctx.fillStyle = 'rgba(255,255,255,0.85)';
+        dctx.fillText(overlayText, dc.width/2, dc.height/2);
+      }
+      dc.toBlob(blob => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `RGB-${r}-${g}-${b}.png`;
+        link.click();
       });
-    })();
+    });
+  })();
   </script>
 </body>
 </html>
