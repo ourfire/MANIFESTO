@@ -1,15 +1,14 @@
 {
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "/fg.html",
-        "has": [
-          {
-            "type": "host",
-            "value": "dr.banal.love"
-          }
-        ]
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/fg.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "dr.banal.love"
+        }
+      ]
+    }
+  ]
+}
